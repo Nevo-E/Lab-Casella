@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Laboratorio Casella — personalizzazione, preparazione, riparazione e produzione di componenti per ASG e softair.">
+  <title>Laboratorio Casella — Airsoft Engineering</title>
+  <style>
+    :root{
+      --bg:#080909;
+      --panel:#101211;
+      --panel-2:#151816;
+      --line:#2a2e2b;
+      --text:#f1f2ed;
+      --muted:#9da39d;
+      --accent:#b7d45a;
+      --accent-2:#d6ed83;
+      --max:1180px;
+      --radius:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 75% 5%,rgba(183,212,90,.09),transparent 28rem),
+        radial-gradient(circle at 15% 35%,rgba(183,212,90,.035),transparent 25rem),
+        var(--bg);
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .eyebrow{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.72rem;
+      font-weight:800;
+    }
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      background:rgba(8,9,9,.78);
+      border-bottom:1px solid rgba(255,255,255,.07);
+      backdrop-filter:blur(18px);
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.03em}
+    .mark{
+      width:36px;height:36px;border:1px solid var(--accent);
+      display:grid;place-items:center;border-radius:9px;
+      color:var(--accent);font-size:.72rem;font-weight:900;
+    }
+    .nav-links{display:flex;gap:28px;color:#b7bcb7;font-size:.88rem}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      border:1px solid #4c5832;background:rgba(183,212,90,.08);
+      color:var(--accent-2);padding:10px 15px;border-radius:10px;font-size:.82rem;font-weight:750
+    }
+    .hero{min-height:820px;padding:170px 0 90px;display:grid;align-items:center;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+    h1{font-size:clamp(3.4rem,7vw,6.8rem);line-height:.9;letter-spacing:-.075em;max-width:800px;margin:18px 0 28px}
+    h1 span{color:var(--accent)}
+    .hero p{font-size:1.08rem;color:#b3b8b2;max-width:620px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+    .btn{padding:14px 19px;border-radius:11px;border:1px solid var(--line);font-weight:800;font-size:.88rem;transition:.2s}
+    .btn-primary{background:var(--accent);color:#11150d;border-color:var(--accent)}
+    .btn-primary:hover{background:var(--accent-2);transform:translateY(-2px)}
+    .btn-ghost:hover{border-color:#596157;background:#121512}
+    .hero-art{
+      min-height:500px;border:1px solid var(--line);border-radius:28px;position:relative;overflow:hidden;
+      background:
+        linear-gradient(135deg,transparent 30%,rgba(183,212,90,.08)),
+        repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 10px),
+        #0d100e;
+      box-shadow:0 30px 90px rgba(0,0,0,.35);
+    }
+    .hero-art:before{
+      content:"";position:absolute;width:430px;height:430px;border-radius:50%;
+      border:1px solid rgba(183,212,90,.24);right:-120px;top:50px;
+      box-shadow:0 0 0 45px rgba(183,212,90,.025),0 0 0 90px rgba(183,212,90,.018);
+    }
+    .rifle{
+      position:absolute;left:7%;right:7%;top:44%;height:82px;transform:rotate(-12deg);
+      background:linear-gradient(#252b27,#0d100e 65%,#1e241f);
+      border:1px solid #414941;border-radius:12px;
+      box-shadow:0 24px 50px #000;
+    }
+    .rifle:before{content:"";position:absolute;left:13%;top:13px;width:47%;height:18px;border:1px solid #555d55;background:#171b18;border-radius:5px}
+    .rifle:after{content:"";position:absolute;right:-17%;top:34px;width:27%;height:9px;background:#303631;border:1px solid #4a514a;border-radius:10px}
+    .mag{position:absolute;left:48%;top:67px;width:65px;height:105px;background:#171b18;border:1px solid #454c45;border-radius:7px;transform:rotate(10deg)}
+    .grip{position:absolute;left:27%;top:62px;width:45px;height:105px;background:#141714;border:1px solid #3f463f;transform:rotate(15deg);border-radius:6px}
+    .spec{
+      position:absolute;bottom:22px;left:22px;right:22px;padding:15px 16px;
+      border:1px solid rgba(255,255,255,.09);background:rgba(9,11,10,.72);backdrop-filter:blur(10px);
+      display:flex;justify-content:space-between;gap:20px;border-radius:12px;font-size:.76rem;color:#aeb5ad
+    }
+    .spec strong{display:block;color:var(--text);font-size:.86rem}
+    section{padding:110px 0}
+    .section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:48px}
+    .section-head h2{font-size:clamp(2.1rem,4vw,3.6rem);letter-spacing:-.055em;line-height:1}
+    .section-head p{max-width:470px;color:var(--muted)}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .service{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:220px;background:rgba(255,255,255,.012)}
+    .service:hover{background:#101410}
+    .num{color:var(--accent);font:800 .72rem ui-monospace,monospace}
+    .service h3{font-size:1.15rem;margin:35px 0 10px}
+    .service p{color:var(--muted);font-size:.91rem}
+    .engineering{background:#0c0f0d;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .eng-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start}
+    .eng-copy h2{font-size:clamp(2.5rem,5vw,4.7rem);letter-spacing:-.065em;line-height:.95;margin:16px 0 22px}
+    .eng-copy p{color:var(--muted);max-width:510px}
+    .metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}
+    .metric{background:#0c0f0d;padding:28px;min-height:145px}
+    .metric b{display:block;color:var(--accent);font-size:2rem;letter-spacing:-.05em}
+    .metric span{color:#aeb4ad;font-size:.84rem}
+    .platforms{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .platform{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(135deg,#101310,#0c0e0d)}
+    .platform-tag{display:inline-block;border:1px solid #3e473b;color:var(--accent);padding:5px 8px;border-radius:6px;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .platform h3{font-size:1.35rem;margin:22px 0 9px}
+    .platform p{color:var(--muted);font-size:.9rem}
+    .platform ul{list-style:none;margin-top:18px;color:#c3c8c1;font-size:.82rem;display:grid;gap:7px}
+    .platform li:before{content:"—";color:var(--accent);margin-right:8px}
+    .speed{position:relative;overflow:hidden}
+    .speed-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .speed-card{padding:42px;border-radius:var(--radius);min-height:350px;border:1px solid var(--line);background:radial-gradient(circle at 85% 15%,rgba(183,212,90,.12),transparent 30%),#101310}
+    .speed-card h2{font-size:clamp(2.3rem,4vw,4rem);letter-spacing:-.06em;line-height:.95;margin:14px 0 20px}
+    .speed-card p{color:var(--muted);max-width:520px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+    .chip{border:1px solid #343b34;border-radius:99px;padding:7px 10px;color:#b8beb7;font-size:.72rem}
+    .training{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+    .training h2{font-size:clamp(2.3rem,4vw,4rem);letter-spacing:-.06em;line-height:.95;margin-top:15px}
+    .levels{display:grid;gap:1px;background:var(--line)}
+    .level{background:var(--bg);padding:25px;display:grid;grid-template-columns:100px 1fr;gap:25px}
+    .level b{color:var(--accent);font-size:.8rem}
+    .level h3{font-size:1.1rem;margin-bottom:7px}
+    .level p{color:var(--muted);font-size:.86rem}
+    .contact{padding-bottom:80px}
+    .contact-box{border:1px solid #4b5635;background:linear-gradient(135deg,rgba(183,212,90,.09),rgba(255,255,255,.015));padding:55px;border-radius:24px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+    .contact-box h2{font-size:clamp(2.3rem,5vw,4.5rem);letter-spacing:-.065em;line-height:.92}
+    .contact-box p{color:var(--muted);margin-top:15px}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#858b85;font-size:.76rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px}
+    .mobile-toggle{display:none}
+    @media(max-width:850px){
+      .nav-links{display:none}.mobile-toggle{display:block;border:0;background:none;color:var(--text);font-size:1.3rem}
+      .hero{min-height:auto;padding-top:135px}.hero-grid,.eng-grid,.training{grid-template-columns:1fr}
+      .hero-art{min-height:400px}.services{grid-template-columns:1fr 1fr}.platforms,.speed-grid{grid-template-columns:1fr}
+      .section-head{display:block}.section-head p{margin-top:18px}.contact-box{display:block}
+    }
+    @media(max-width:560px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav-cta{display:none}.hero{padding-bottom:55px}h1{font-size:3.45rem}
+      section{padding:75px 0}.services{grid-template-columns:1fr}.service{min-height:180px}
+      .metrics{grid-template-columns:1fr}.speed-card{padding:28px}.level{grid-template-columns:1fr;gap:7px}
+      .contact-box{padding:32px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:7px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="mark">LC</span><span>LABORATORIO CASELLA</span></a>
+      <div class="nav-links">
+        <a href="#servizi">Servizi</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#speedsoft">Speedsoft</a>
+        <a href="#formazione">Formazione</a>
+      </div>
+      <a class="nav-cta" href="#contatti">Richiedi assistenza</a>
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Airsoft engineering · Vigonza, Padova</div>
+          <h1>Non una replica.<br><span>Una preparazione.</span></h1>
+          <p>Personalizzazione, preparazione, riparazione e sviluppo di componenti per ASG. Esperienza tecnica, ricerca e sviluppo e attenzione maniacale al risultato.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contatti">Parla con il laboratorio</a>
+            <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Illustrazione tecnica di una replica airsoft">
+          <div class="rifle"><div class="grip"></div><div class="mag"></div></div>
+          <div class="spec"><div><strong>LABORATORIO CASELLA</strong>Technical airsoft division</div><div><strong>ASG / CUSTOM</strong>Engineering & service</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servizi">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">01 / Servizi</div><h2>Dal problema<br>alla soluzione.</h2></div>
+          <p>Un laboratorio tecnico per chi vuole una replica affidabile, personalizzata o preparata secondo un obiettivo preciso.</p>
+        </div>
+        <div class="services">
+          <article class="service"><span class="num">01</span><h3>Preparazione</h3><p>Preparazioni ad alte prestazioni su piattaforme airsoft, dalla scelta dei componenti alla messa a punto finale.</p></article>
+          <article class="service"><span class="num">02</span><h3>Riparazione</h3><p>Diagnosi, interventi meccanici ed elettronici, verifica dei componenti e test della replica.</p></article>
+          <article class="service"><span class="num">03</span><h3>Personalizzazione</h3><p>Verniciatura, marcatura laser, stippling e lavorazioni dedicate per rendere ogni replica realmente propria.</p></article>
+          <article class="service"><span class="num">04</span><h3>Componenti custom</h3><p>Produzione e sviluppo di parti dedicate, upgrade e soluzioni realizzate secondo specifiche esigenze.</p></article>
+          <article class="service"><span class="num">05</span><h3>Elettronica</h3><p>Installazione e configurazione di sistemi elettronici per il controllo e la gestione della replica.</p></article>
+          <article class="service"><span class="num">06</span><h3>Officina mobile</h3><p>Assistenza tecnica direttamente sul campo, pensata per ridurre i tempi e riportare rapidamente la replica operativa.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="engineering" id="engineering">
+      <div class="wrap eng-grid">
+        <div class="eng-copy">
+          <div class="eyebrow">02 / Engineering</div>
+          <h2>La prestazione nasce dalla meccanica.</h2>
+          <p>La Divisione Innovazione Tecnologica sviluppa e seleziona soluzioni per migliorare il comportamento delle repliche. Spessoramento, gruppo aria, pistone, ingranaggi, motore, canna, hop-up ed elettronica vengono considerati come un sistema unico.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric"><b>6.000+</b><span>repliche riparate dichiarate</span></div>
+          <div class="metric"><b>17 anni</b><span>di esperienza nel settore airsoft dichiarata</span></div>
+          <div class="metric"><b>26 anni</b><span>di esperienza nel settore elettronico dichiarata</span></div>
+          <div class="metric"><b>D.I.T.</b><span>Divisione Innovazione Tecnologica</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">03 / Piattaforme</div><h2>Ogni piattaforma<br>ha la sua logica.</h2></div>
+          <p>Il laboratorio documenta interventi e preparazioni su differenti piattaforme e sistemi, inclusi AEG, GBB e repliche dedicate allo speedsoft.</p>
+        </div>
+        <div class="platforms">
+          <article class="platform"><span class="platform-tag">AEG</span><h3>Meccanica & performance</h3><p>Interventi su gearbox e componentistica per costruire un sistema coerente con l'obiettivo di utilizzo.</p><ul><li>Gearbox e ingranaggi</li><li>Gruppo aria e pistone</li><li>Motore e spessoramento</li><li>Canna e hop-up</li></ul></article>
+          <article class="platform"><span class="platform-tag">GBB</span><h3>Gas blowback</h3><p>Servizi e componenti dedicati anche a piattaforme GBB, con lavorazioni e ricambi specifici.</p><ul><li>Tokyo Marui MP7A1 GBB</li><li>Componenti rinforzati</li><li>Ripristino e manutenzione</li><li>Personalizzazioni</li></ul></article>
+          <article class="platform"><span class="platform-tag">ELETTRONICA</span><h3>Leviathan / controllo</h3><p>Installazione e configurazione di sistemi di controllo elettronico per ASG compatibili.</p><ul><li>V2 / V3</li><li>NGRS</li><li>EVO Scorpion</li><li>Configurazione tramite app</li></ul></article>
+          <article class="platform"><span class="platform-tag">CUSTOM</span><h3>Parti su specifica</h3><p>Quando il componente standard non basta, il laboratorio sviluppa soluzioni dedicate al progetto.</p><ul><li>Parti upgrade</li><li>Componenti su misura</li><li>Materiali compositi</li><li>Prototipazione</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="speed" id="speedsoft">
+      <div class="wrap speed-grid">
+        <div class="speed-card">
+          <div class="eyebrow">04 / Speedsoft</div>
+          <h2>Fast response.<br>Real control.</h2>
+          <p>Preparazioni meccaniche ed elettroniche dedicate allo speedsoft, sviluppate insieme al giocatore in base a stile, piattaforma e scenario di utilizzo.</p>
+          <div class="chips"><span class="chip">Custom mechanics</span><span class="chip">Carbon</span><span class="chip">CarbonKevlar</span><span class="chip">Titanium fiber</span></div>
+        </div>
+        <div class="speed-card">
+          <div class="eyebrow">Performance</div>
+          <h2>Costruita<br>intorno a te.</h2>
+          <p>Il sito del laboratorio documenta preparazioni con risposta al singolo dichiarata sotto i 30 ms e distanze utili dichiarate nell'ordine di 64–68 metri, in funzione della configurazione.</p>
+          <div class="actions"><a class="btn btn-primary" href="#contatti">Configura il tuo progetto</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formazione">
+      <div class="wrap training">
+        <div>
+          <div class="eyebrow">05 / Formazione</div>
+          <h2>Capire la replica.<br>Non solo usarla.</h2>
+          <p style="color:var(--muted);margin-top:22px;max-width:430px">Percorsi tecnici pensati per chi vuole imparare manutenzione, diagnosi e preparazione delle ASG.</p>
+        </div>
+        <div class="levels">
+          <div class="level"><b>BASIC</b><div><h3>Fai da te / meccanico di squadra</h3><p>Verifiche preliminari, identificazione dei problemi, spessoramento base, hop-up, riassemblaggio e test.</p></div></div>
+          <div class="level"><b>MEDIUM</b><div><h3>Riparazione</h3><p>Diagnosi e interventi più completi, inclusi spessoramento con relativi calcoli e verifica dei componenti.</p></div></div>
+          <div class="level"><b>PRO</b><div><h3>Custom ad alte prestazioni</h3><p>Analisi della richiesta, scelta delle parti e dell'elettronica, calcoli, meccanica, assemblaggio e test finale.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contatti">
+      <div class="wrap">
+        <div class="contact-box">
+          <div>
+            <div class="eyebrow">06 / Contatti</div>
+            <h2>Hai un progetto<br>in mente?</h2>
+            <p>Descrivici la replica, il problema o il risultato che vuoi ottenere.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:assistenza@laboratoriocasella.it">assistenza@laboratoriocasella.it</a>
+            <a class="btn btn-ghost" href="tel:+393280133770">+39 328 013 3770</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© Laboratorio Casella di Casella Matteo</span>
+      <span>Via del Progresso 12 · 35010 Vigonza (PD) · P.IVA 05284480281</span>
+    </div>
+  </footer>
+</body>
+</html>
