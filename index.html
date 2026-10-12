@@ -282,6 +282,10 @@
               <label for="messaggio">Messaggio</label>
               <textarea id="messaggio" name="Messaggio" placeholder="Descrivi la replica, il problema o il progetto..." required></textarea>
             </div>
+            <div class="privacy-check" style="display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:var(--muted)">
+              <input id="privacy" name="privacy" type="checkbox" required style="margin-top:5px;accent-color:var(--accent-2)">
+              <label for="privacy">Dichiaro di aver letto l'<a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:var(--accent-2);text-decoration:underline;font-weight:750">informativa privacy</a>.</label>
+            </div>
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0"><button class="btn btn-primary" id="contact-submit" type="submit">Invia richiesta</button><p id="form-status" role="status" aria-live="polite" style="margin-top:4px;font-size:.84rem;color:var(--muted)"></p>
           </form>
         </div>
@@ -301,7 +305,7 @@
   <footer>
     <div class="wrap footer-inner">
       <span>© Laboratorio Casella di Casella Matteo</span>
-      <span>Via del Progresso 12 · 35010 Vigonza (PD) · P.IVA 05284480281</span>
+      <span>Via del Progresso 12 · 35010 Vigonza (PD) · P.IVA 05284480281 · <a href="privacy.html" style="text-decoration:underline">Privacy</a></span>
     </div>
   </footer>
 <script>
